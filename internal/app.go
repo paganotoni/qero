@@ -30,6 +30,7 @@ func New() Server {
 	)
 
 	r.HandleFunc("GET /{$}", qrForm)
+	r.HandleFunc("GET /up", health)
 	r.HandleFunc("POST /{$}", qrImage)
 	r.HandleFunc("GET /download/{$}", downloadQR)
 
