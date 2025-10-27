@@ -1,0 +1,4 @@
+bin/*
+
+# Ignore the built version of the application.css file
+internal/system/assets/application.css
