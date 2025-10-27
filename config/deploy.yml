@@ -29,5 +29,6 @@ env:
   clear:
     SESSION_NAME: "qero_session"
     GO_ENV: "production"
+    PORT: "80"
   secret:
     - SESSION_SECRET
