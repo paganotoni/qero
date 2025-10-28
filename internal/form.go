@@ -60,6 +60,17 @@ func qrForm(w http.ResponseWriter, r *http.Request) {
 					),
 				),
 			),
+
+			Hr(Class("mt-6 border border-gray-300")),
+			P(
+				Class("text-sm text-gray-500 mt-4"),
+				Text("Made by "),
+				A(
+					Href("https://antoniopagano.com"),
+					Class("text-blue-500 underline"),
+					Text("Antonio Pagano"),
+				),
+			),
 		),
 	)
 
