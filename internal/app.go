@@ -1,4 +1,4 @@
-// package internal contains the core application logic
+// Package internal contains the core application logic
 // for the Qero QR code generator server.
 package internal
 

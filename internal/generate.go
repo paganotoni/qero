@@ -22,7 +22,7 @@ func generate(w http.ResponseWriter, r *http.Request) {
 	var png []byte
 	png, err := qrcode.Encode(text, qrcode.Medium, 256)
 	if err != nil {
-		server.Error(w, fmt.Errorf("Failed to generate QR code: %w", err), http.StatusInternalServerError)
+		server.Error(w, fmt.Errorf("failed to generate QR code: %s", err), http.StatusInternalServerError)
 		return
 	}
 
