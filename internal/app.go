@@ -1,8 +1,9 @@
+// package internal contains the core application logic
+// for the Qero QR code generator server.
 package internal
 
 import (
 	"cmp"
-	"net/http"
 	"os"
 
 	"qero/internal/system/assets"
@@ -10,14 +11,7 @@ import (
 	"go.leapkit.dev/core/server"
 )
 
-// Server interface exposes the methods
-// needed to start the server in the cmd/app package
-type Server interface {
-	Addr() string
-	Handler() http.Handler
-}
-
-func New() Server {
+func New() any {
 	// Creating a new server instance with the
 	// default host and port values.
 	r := server.New(
@@ -29,7 +23,7 @@ func New() Server {
 		),
 	)
 
-	r.HandleFunc("GET /{$}", qrForm)
+	r.HandleFunc("GET /{$}", landing)
 	r.HandleFunc("GET /up", health)
 	r.HandleFunc("POST /{$}", qrImage)
 	r.HandleFunc("GET /download/{$}", downloadQR)
