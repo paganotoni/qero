@@ -10,7 +10,7 @@ import (
 	. "maragu.dev/gomponents/html"
 )
 
-func qrImage(w http.ResponseWriter, r *http.Request) {
+func generate(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 
 	text := r.FormValue("Content")

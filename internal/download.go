@@ -8,7 +8,7 @@ import (
 	"go.leapkit.dev/core/server"
 )
 
-func downloadQR(w http.ResponseWriter, r *http.Request) {
+func download(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 
 	text := r.FormValue("Content")

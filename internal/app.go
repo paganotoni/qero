@@ -25,8 +25,8 @@ func New() any {
 
 	r.HandleFunc("GET /{$}", landing)
 	r.HandleFunc("GET /up", health)
-	r.HandleFunc("POST /{$}", qrImage)
-	r.HandleFunc("GET /download/{$}", downloadQR)
+	r.HandleFunc("POST /{$}", generate)
+	r.HandleFunc("GET /download/{$}", download)
 
 	r.Folder("/public/", assets.Manager)
 
