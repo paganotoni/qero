@@ -1,16 +1,23 @@
 package internal
 
 import (
+	"context"
+
+	"go.leapkit.dev/core/server"
 	. "maragu.dev/gomponents"
 	. "maragu.dev/gomponents/html"
 )
 
-type pathFinder interface {
-	Path(string) string
-}
-
 // page renders a full HTML page with the given content.
-func page(content Node, assets pathFinder) Node {
+func page(ctx context.Context, content Node) Node {
+	manager := server.Valuer(ctx).Value("assetsManager").(interface {
+		Path(string) string
+	})
+
+	if manager == nil {
+		return content
+	}
+
 	return HTML(
 		Lang("en"),
 		Class("h-full"),
@@ -27,7 +34,7 @@ func page(content Node, assets pathFinder) Node {
 			),
 			Link(
 				Rel("stylesheet"),
-				Href(assets.Path("application.css")),
+				Href(manager.Path("application.css")),
 			),
 			Script(
 				Src("https://unpkg.com/htmx.org@2.0.0"),

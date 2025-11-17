@@ -3,7 +3,6 @@ package internal
 import (
 	"net/http"
 
-	"go.leapkit.dev/core/server"
 	. "maragu.dev/gomponents"
 	hx "maragu.dev/gomponents-htmx"
 	. "maragu.dev/gomponents/html"
@@ -11,16 +10,8 @@ import (
 
 // landing renders the QR generation landing.
 func landing(w http.ResponseWriter, r *http.Request) {
-	manager, ok := r.Context().Value("assets").(interface {
-		Path(string) string
-	})
-
-	if !ok {
-		server.Errorf(w, http.StatusInternalServerError, "invalid assets manager")
-		return
-	}
-
 	p := page(
+		r.Context(),
 		Div(
 			Class("text-center max-w-md mx-auto flex flex-col gap-1"),
 
@@ -80,8 +71,6 @@ func landing(w http.ResponseWriter, r *http.Request) {
 				),
 			),
 		),
-
-		manager,
 	)
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
