@@ -1,19 +1,16 @@
 package internal
 
 import (
-	"qero/internal/system/assets"
-
 	. "maragu.dev/gomponents"
 	. "maragu.dev/gomponents/html"
 )
 
-// page renders a full HTML page with the given content.
-func page(content Node) Node {
-	css, err := assets.Manager.PathFor("application.css")
-	if err != nil {
-		css = ""
-	}
+type pathFinder interface {
+	Path(string) string
+}
 
+// page renders a full HTML page with the given content.
+func page(content Node, assets pathFinder) Node {
 	return HTML(
 		Lang("en"),
 		Class("h-full"),
@@ -30,7 +27,7 @@ func page(content Node) Node {
 			),
 			Link(
 				Rel("stylesheet"),
-				Href(css),
+				Href(assets.Path("application.css")),
 			),
 			Script(
 				Src("https://unpkg.com/htmx.org@2.0.0"),

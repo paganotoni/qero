@@ -21,14 +21,14 @@ func New() any {
 			cmp.Or(os.Getenv("SESSION_SECRET"), "d720c059-9664-4980-8169-1158e167ae57"),
 			cmp.Or(os.Getenv("SESSION_NAME"), "leapkit_session"),
 		),
+
+		server.WithAssets(assets.Files, "/public/"),
 	)
 
 	r.HandleFunc("GET /{$}", landing)
 	r.HandleFunc("GET /up", health)
 	r.HandleFunc("POST /{$}", generate)
 	r.HandleFunc("GET /download/{$}", download)
-
-	r.Folder("/public/", assets.Manager)
 
 	return r
 }
