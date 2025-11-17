@@ -10,7 +10,7 @@ import (
 
 // page renders a full HTML page with the given content.
 func page(ctx context.Context, content Node) Node {
-	manager := server.Valuer(ctx).Value("assetsManager").(interface {
+	manager := server.Valuer(ctx).Value("assetManager").(interface {
 		Path(string) string
 	})
 

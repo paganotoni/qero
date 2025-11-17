@@ -22,7 +22,7 @@ func New() any {
 			cmp.Or(os.Getenv("SESSION_NAME"), "leapkit_session"),
 		),
 
-		server.WithAssets(assets.Files, "/public/"),
+		server.WithAssets(assets.Files, "/public"),
 	)
 
 	r.HandleFunc("GET /{$}", landing)
